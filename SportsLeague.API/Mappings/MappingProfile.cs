@@ -14,7 +14,13 @@ namespace SportsLeague.API.Mappings
             CreateMap<Team, TeamResponseDTO>();
 
             // Aquí puedes agregar más mapeos para otras entidades como Player, Match, etc.
+
+            // Player mappings
+            CreateMap<PlayerRequestDTO, Player>();
+            CreateMap<Player, PlayerResponseDTO>()
+                .ForMember(
+                    dest => dest.TeamName,
+                    opt => opt.MapFrom(src => src.Team.Name));
         }
     }
-
 }

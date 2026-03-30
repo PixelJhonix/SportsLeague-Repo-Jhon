@@ -9,7 +9,10 @@
         public DateTime FoundedDate { get; set; }
 
         // Navigation Property - Colección de jugadores
-        public ICollection<Player> Players { get; set; } = new List<Player>(); 
+        public ICollection<Player> Players { get; set; } = new List<Player>();
+
+        // - Colección de torneos en los que participa el equipo
+        public ICollection<TournamentTeam> TournamentTeams { get; set; } = new List<TournamentTeam>();
 
     }
 }
