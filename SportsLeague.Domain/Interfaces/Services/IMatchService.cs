@@ -1,5 +1,5 @@
-﻿using SportsLeague.Domain.Enums;
-using SportsLeague.Domain.Entities;
+﻿using SportsLeague.Domain.Entities;
+using SportsLeague.Domain.Enums;
 
 namespace SportsLeague.Domain.Interfaces.Services
 {
