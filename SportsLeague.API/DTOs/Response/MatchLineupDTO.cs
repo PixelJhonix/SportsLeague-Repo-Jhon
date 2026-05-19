@@ -1,4 +1,6 @@
-﻿namespace SportsLeague.API.DTOs.Response;
+﻿using SportsLeague.Domain.Enums;
+
+namespace SportsLeague.API.DTOs.Response;
 
 public class MatchLineupDTO
 {
@@ -8,7 +10,7 @@ public class MatchLineupDTO
     public string PlayerName { get; set; } = string.Empty;
     public string TeamName { get; set; } = string.Empty;
     public bool IsStarter { get; set; }
-    public string Position { get; set; } = string.Empty;
+    public PlayerPosition Position { get; set; }
 }
 
 

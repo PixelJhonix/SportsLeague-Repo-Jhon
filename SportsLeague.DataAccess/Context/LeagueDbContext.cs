@@ -323,8 +323,7 @@ namespace SportsLeague.DataAccess.Context
                       .IsRequired();
 
                 entity.Property(ml => ml.Position)
-                      .IsRequired()
-                      .HasMaxLength(10);
+                      .IsRequired();
 
                 entity.Property(ml => ml.CreatedAt)
                       .IsRequired();
