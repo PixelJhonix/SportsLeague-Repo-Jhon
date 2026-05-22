@@ -7,7 +7,7 @@
         Midfielder = 2,
         Forward = 3,
 
-        //specifics 
+        // Specific positions
         CentralDefender = 4,
         LeftBack = 5,
         RightBack = 6,

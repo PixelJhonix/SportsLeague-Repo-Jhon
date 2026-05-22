@@ -12,7 +12,7 @@ using SportsLeague.DataAccess.Context;
 namespace SportsLeague.DataAccess.Migrations
 {
     [DbContext(typeof(LeagueDbContext))]
-    [Migration("20260519042339_AddMatchLineupEntity")]
+    [Migration("20260522024429_AddMatchLineupEntity")]
     partial class AddMatchLineupEntity
     {
         /// <inheritdoc />
@@ -168,10 +168,8 @@ namespace SportsLeague.DataAccess.Migrations
                     b.Property<int>("PlayerId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Position")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                    b.Property<int>("Position")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");

@@ -20,7 +20,7 @@ namespace SportsLeague.DataAccess.Migrations
                     MatchId = table.Column<int>(type: "int", nullable: false),
                     PlayerId = table.Column<int>(type: "int", nullable: false),
                     IsStarter = table.Column<bool>(type: "bit", nullable: false),
-                    Position = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
+                    Position = table.Column<int>(type: "int", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
