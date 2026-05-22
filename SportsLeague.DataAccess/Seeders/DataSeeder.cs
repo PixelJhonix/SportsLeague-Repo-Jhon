@@ -12,183 +12,196 @@ namespace SportsLeague.DataAccess.Seeders
             // Solo ejecutar si no hay equipos (BD vacía)
             if (await context.Teams.AnyAsync()) return;
 
-
+          
             // ═══ 1. EQUIPOS (Liga BetPlay 2026) ═══
             var teams = new List<Team>
-        {
-            new() { Name="Atlético Nacional", City="Medellín", Stadium="Atanasio Girardot" },
-            new() { Name="Independiente Medellín", City="Medellín", Stadium="Atanasio Girardot" },
-            new() { Name="América de Cali", City="Cali", Stadium="Pascual Guerrero" },
-            new() { Name="Deportivo Cali", City="Cali", Stadium="Deportivo Cali" },
-            new() { Name="Junior FC", City="Barranquilla", Stadium="Metropolitano" },
-            new() { Name="Millonarios FC", City="Bogotá", Stadium="El Campín" },
-            new() { Name="Independiente Santa Fe", City="Bogotá", Stadium="El Campín" },
-            new() { Name="Deportes Tolima", City="Ibagué", Stadium="Manuel Murillo Toro" },
-            new() { Name="Atlético Bucaramanga", City="Bucaramanga", Stadium="Alfonso López" },
-            new() { Name="Once Caldas", City="Manizales", Stadium="Palogrande" },
-            new() { Name="Deportivo Pasto", City="Pasto", Stadium="Departamental Libertad" },
-            new() { Name="Deportivo Pereira", City="Pereira", Stadium="Hernán Ramírez Villegas" },
-            new() { Name="Águilas Doradas", City="Rionegro", Stadium="Alberto Grisales" },
-            new() { Name="Boyacá Chicó FC", City="Tunja", Stadium="La Independencia" },
-            new() { Name="Jaguares de Córdoba", City="Montería", Stadium="Jaraguay" },
-            new() { Name="Alianza Valledupar FC", City="Valledupar", Stadium="Armando Maestre" },
-            new() { Name="Fortaleza FC", City="Bogotá", Stadium="Metropolitano de Techo" },
-            new() { Name="Llaneros FC", City="Villavicencio", Stadium="Bello Horizonte" },
-            new() { Name="Cúcuta Deportivo", City="Cúcuta", Stadium="General Santander" },
-            new() { Name="Internacional de Bogotá", City="Bogotá", Stadium="Metropolitano de Techo" },
-        };
-
-
+            {
+                new() { Name="Atlético Nacional", City="Medellín", Stadium="Atanasio Girardot" },
+                new() { Name="Independiente Medellín", City="Medellín", Stadium="Atanasio Girardot" },
+                new() { Name="América de Cali", City="Cali", Stadium="Pascual Guerrero" },
+                new() { Name="Deportivo Cali", City="Cali", Stadium="Deportivo Cali" },
+                new() { Name="Junior FC", City="Barranquilla", Stadium="Metropolitano" },
+                new() { Name="Millonarios FC", City="Bogotá", Stadium="El Campín" },
+                new() { Name="Independiente Santa Fe", City="Bogotá", Stadium="El Campín" },
+                new() { Name="Deportes Tolima", City="Ibagué", Stadium="Manuel Murillo Toro" },
+                new() { Name="Atlético Bucaramanga", City="Bucaramanga", Stadium="Alfonso López" },
+                new() { Name="Once Caldas", City="Manizales", Stadium="Palogrande" },
+                new() { Name="Deportivo Pasto", City="Pasto", Stadium="Departamental Libertad" },
+                new() { Name="Deportivo Pereira", City="Pereira", Stadium="Hernán Ramírez Villegas" },
+                new() { Name="Águilas Doradas", City="Rionegro", Stadium="Alberto Grisales" },
+                new() { Name="Boyacá Chicó FC", City="Tunja", Stadium="La Independencia" },
+                new() { Name="Jaguares de Córdoba", City="Montería", Stadium="Jaraguay" },
+                new() { Name="Alianza Valledupar FC", City="Valledupar", Stadium="Armando Maestre" },
+                new() { Name="Fortaleza FC", City="Bogotá", Stadium="Metropolitano de Techo" },
+                new() { Name="Llaneros FC", City="Villavicencio", Stadium="Bello Horizonte" },
+                new() { Name="Cúcuta Deportivo", City="Cúcuta", Stadium="General Santander" },
+                new() { Name="Internacional de Bogotá", City="Bogotá", Stadium="Metropolitano de Techo" },
+            };
             context.Teams.AddRange(teams);
             await context.SaveChangesAsync();
 
 
-            // ═══ 2. JUGADORES (4 por equipo = 80 total) ═══
+            // ═══ 2. JUGADORES (4 por equipo; Nacional y Medellín con 12 para pruebas de alineación) ═══
             var playersData = new (string First, string Last, PlayerPosition Pos, int Number)[][]
             {
             // 1. Atlético Nacional
-            new[] {
-                ("David", "Ospina", PlayerPosition.Goalkeeper, 1),
-                ("William", "Tesillo", PlayerPosition.Defender, 3),
-                ("Edwin", "Cardona", PlayerPosition.Midfielder, 10),
-                ("Alfredo", "Morelos", PlayerPosition.Forward, 9),
-            },
-            // 2. Independiente Medellín
-            new[] {
-                ("Salvador", "Ichazo", PlayerPosition.Goalkeeper, 1),
-                ("Andrés", "Cadavid", PlayerPosition.Defender, 4),
-                ("Adrián", "Arregui", PlayerPosition.Midfielder, 5),
-                ("Luciano", "Pons", PlayerPosition.Forward, 9),
-            },
+                new[] {
+                    ("David", "Ospina", PlayerPosition.Goalkeeper, 1),
+                    ("William", "Tesillo", PlayerPosition.CentralDefender, 3),
+                    ("Danovis", "Wanaguma", PlayerPosition.CentralDefender, 4),
+                    ("Felipe", "Méndez", PlayerPosition.LeftBack, 5),
+                    ("Emmanuel", "Ossa", PlayerPosition.RightBack, 2),
+                    ("Jefferson", "Duque", PlayerPosition.DefensiveMidfielder, 6),
+                    ("Edwin", "Cardona", PlayerPosition.AttackingMidfielder, 10),
+                    ("Diber", "Cambindo", PlayerPosition.LeftWinger, 11),
+                    ("Jhon", "Duque", PlayerPosition.RightWinger, 7),
+                    ("Juan Pablo", "Solano", PlayerPosition.CentralMidfielder, 8),
+                    ("Alfredo", "Morelos", PlayerPosition.Striker, 9),
+                    ("Emanuel", "Mosquera", PlayerPosition.Striker, 19),
+                },
+            // 2. Independiente Medellín 
+                new[] {
+                    ("Salvador", "Ichazo", PlayerPosition.Goalkeeper, 1),
+                    ("Andrés", "Cadavid", PlayerPosition.CentralDefender, 4),
+                    ("Adrián", "Arregui", PlayerPosition.CentralMidfielder, 5),
+                    ("Luciano", "Pons", PlayerPosition.Striker, 9),
+                    ("Dorlan", "Pabón", PlayerPosition.LeftWinger, 11),
+                    ("Baldomero", "Perlaza", PlayerPosition.RightBack, 2),
+                    ("Jarlan", "Barrera", PlayerPosition.RightWinger, 7),
+                    ("Sebastián", "Gómez", PlayerPosition.DefensiveMidfielder, 6),
+                    ("Felipe", "Aguilar", PlayerPosition.CentralDefender, 14),
+                    ("Jonatan", "Álvarez", PlayerPosition.Striker, 17),
+                    ("Yairo", "Yepes", PlayerPosition.AttackingMidfielder, 10),
+                    ("Jhon", "Lucumí", PlayerPosition.LeftBack, 3),
+                },
             // 3. América de Cali
-            new[] {
-                ("Joel", "Graterol", PlayerPosition.Goalkeeper, 1),
-                ("Jorge", "Segura", PlayerPosition.Defender, 3),
-                ("Rodrigo", "Ureña", PlayerPosition.Midfielder, 8),
-                ("Adrián", "Ramos", PlayerPosition.Forward, 9),
-            },
+                new[] {
+                    ("Joel", "Graterol", PlayerPosition.Goalkeeper, 1),
+                    ("Jorge", "Segura", PlayerPosition.CentralDefender, 3),
+                    ("Rodrigo", "Ureña", PlayerPosition.CentralMidfielder, 8),
+                    ("Adrián", "Ramos", PlayerPosition.Striker, 9),
+                },
             // 4. Deportivo Cali
-            new[] {
-                ("Pedro", "Gallese", PlayerPosition.Goalkeeper, 1),
-                ("Fernando", "Álvarez", PlayerPosition.Defender, 4),
-                ("Kevin", "Velasco", PlayerPosition.Midfielder, 10),
-                ("Juan", "Dinenno", PlayerPosition.Forward, 9),
-            },
+                new[] {
+                    ("Pedro", "Gallese", PlayerPosition.Goalkeeper, 1),
+                    ("Fernando", "Álvarez", PlayerPosition.CentralDefender, 4),
+                    ("Kevin", "Velasco", PlayerPosition.AttackingMidfielder, 10),
+                    ("Juan", "Dinenno", PlayerPosition.Striker, 9),
+                },
             // 5. Junior FC
-            new[] {
-                ("Mauro", "Silveira", PlayerPosition.Goalkeeper, 1),
-                ("Edwin", "Herrera", PlayerPosition.Defender, 4),
-                ("Fabián", "Ángel", PlayerPosition.Midfielder, 8),
-                ("Carlos", "Bacca", PlayerPosition.Forward, 7),
-            },
+                new[] {
+                    ("Mauro", "Silveira", PlayerPosition.Goalkeeper, 1),
+                    ("Edwin", "Herrera", PlayerPosition.RightBack, 4),
+                    ("Fabián", "Ángel", PlayerPosition.CentralMidfielder, 8),
+                    ("Carlos", "Bacca", PlayerPosition.Striker, 7),
+                },
             // 6. Millonarios FC
-            new[] {
-                ("Guillermo", "De Amores", PlayerPosition.Goalkeeper, 1),
-                ("Omar", "Bertel", PlayerPosition.Defender, 4),
-                ("Daniel", "Cataño", PlayerPosition.Midfielder, 10),
-                ("Leonardo", "Castro", PlayerPosition.Forward, 9),
-            },
+                new[] {
+                    ("Guillermo", "De Amores", PlayerPosition.Goalkeeper, 1),
+                    ("Omar", "Bertel", PlayerPosition.LeftBack, 4),
+                    ("Daniel", "Cataño", PlayerPosition.AttackingMidfielder, 10),
+                    ("Leonardo", "Castro", PlayerPosition.Striker, 9),
+                },
             // 7. Independiente Santa Fe
-            new[] {
-                ("Leandro", "Castellanos", PlayerPosition.Goalkeeper, 1),
-                ("Elvis", "Mosquera", PlayerPosition.Defender, 3),
-                ("Daniel", "Giraldo", PlayerPosition.Midfielder, 5),
-                ("Hugo", "Rodallega", PlayerPosition.Forward, 9),
-            },
+                new[] {
+                    ("Leandro", "Castellanos", PlayerPosition.Goalkeeper, 1),
+                    ("Elvis", "Mosquera", PlayerPosition.CentralDefender, 3),
+                    ("Daniel", "Giraldo", PlayerPosition.DefensiveMidfielder, 5),
+                    ("Hugo", "Rodallega", PlayerPosition.Striker, 9),
+                },
             // 8. Deportes Tolima
-            new[] {
-                ("William", "Cuesta", PlayerPosition.Goalkeeper, 1),
-                ("Jersson", "González", PlayerPosition.Defender, 3),
-                ("Junior", "Hernández", PlayerPosition.Midfielder, 10),
-                ("Tatay", "Torres", PlayerPosition.Forward, 9),
-            },
+                new[] {
+                    ("William", "Cuesta", PlayerPosition.Goalkeeper, 1),
+                    ("Jersson", "González", PlayerPosition.CentralDefender, 3),
+                    ("Junior", "Hernández", PlayerPosition.AttackingMidfielder, 10),
+                    ("Tatay", "Torres", PlayerPosition.Striker, 9),
+                },
             // 9. Atlético Bucaramanga
-            new[] {
-                ("Juan Camilo", "Chaverra", PlayerPosition.Goalkeeper, 1),
-                ("José", "Ortiz", PlayerPosition.Defender, 4),
-                ("Sherman", "Cárdenas", PlayerPosition.Midfielder, 10),
-                ("Sebastián", "Pons", PlayerPosition.Forward, 9),
-            },
+                new[] {
+                    ("Juan Camilo", "Chaverra", PlayerPosition.Goalkeeper, 1),
+                    ("José", "Ortiz", PlayerPosition.Defender, 4),
+                    ("Sherman", "Cárdenas", PlayerPosition.Midfielder, 10),
+                    ("Sebastián", "Pons", PlayerPosition.Forward, 9),
+                    },
             // 10. Once Caldas
-            new[] {
-                ("Gerardo", "Ortiz", PlayerPosition.Goalkeeper, 1),
-                ("Edisson", "Palomino", PlayerPosition.Defender, 3),
-                ("Sebastián", "Gómez", PlayerPosition.Midfielder, 5),
-                ("Dayro", "Moreno", PlayerPosition.Forward, 9),
-            },
+                new[] {
+                    ("Gerardo", "Ortiz", PlayerPosition.Goalkeeper, 1),
+                    ("Edisson", "Palomino", PlayerPosition.Defender, 3),
+                    ("Sebastián", "Gómez", PlayerPosition.Midfielder, 5),
+                    ("Dayro", "Moreno", PlayerPosition.Forward, 9),
+                    },
             // 11. Deportivo Pasto
-            new[] {
-                ("Diego", "Martínez", PlayerPosition.Goalkeeper, 1),
-                ("Camilo", "Ayala", PlayerPosition.Defender, 4),
-                ("Ray", "Vanegas", PlayerPosition.Midfielder, 10),
-                ("Jown", "Cardona", PlayerPosition.Forward, 9),
-            },
+                new[] {
+                    ("Diego", "Martínez", PlayerPosition.Goalkeeper, 1),
+                    ("Camilo", "Ayala", PlayerPosition.CentralDefender, 4),
+                    ("Ray", "Vanegas", PlayerPosition.AttackingMidfielder, 10),
+                    ("Jown", "Cardona", PlayerPosition.Striker, 9),
+                },
             // 12. Deportivo Pereira
-            new[] {
-                ("Harlen", "Castillo", PlayerPosition.Goalkeeper, 1),
-                ("David", "González", PlayerPosition.Defender, 3),
-                ("Brayan", "León", PlayerPosition.Midfielder, 8),
-                ("Jonier", "Mosquera", PlayerPosition.Forward, 9),
-            },
+                new[] {
+                    ("Harlen", "Castillo", PlayerPosition.Goalkeeper, 1),
+                    ("David", "González", PlayerPosition.CentralDefender, 3),
+                    ("Brayan", "León", PlayerPosition.CentralMidfielder, 8),
+                    ("Jonier", "Mosquera", PlayerPosition.Striker, 9),
+                },
             // 13. Águilas Doradas
-            new[] {
-                ("José Fernando", "Cuadrado", PlayerPosition.Goalkeeper, 1),
-                ("Éder", "Chaux", PlayerPosition.Defender, 4),
-                ("Juan Pablo", "Ramírez", PlayerPosition.Midfielder, 10),
-                ("Cristian", "Subero", PlayerPosition.Forward, 9),
-            },
+                new[] {
+                    ("José Fernando", "Cuadrado", PlayerPosition.Goalkeeper, 1),
+                    ("Éder", "Chaux", PlayerPosition.LeftBack, 4),
+                    ("Juan Pablo", "Ramírez", PlayerPosition.AttackingMidfielder, 10),
+                    ("Cristian", "Subero", PlayerPosition.Striker, 9),
+                },
             // 14. Boyacá Chicó FC
-            new[] {
-                ("Ernesto", "Hernández", PlayerPosition.Goalkeeper, 1),
-                ("Carlos", "Henao", PlayerPosition.Defender, 3),
-                ("Brayan", "Moreno", PlayerPosition.Midfielder, 8),
-                ("Juan David", "Valencia", PlayerPosition.Forward, 9),
-            },
+                new[] {
+                    ("Ernesto", "Hernández", PlayerPosition.Goalkeeper, 1),
+                    ("Carlos", "Henao", PlayerPosition.CentralDefender, 3),
+                    ("Brayan", "Moreno", PlayerPosition.CentralMidfielder, 8),
+                    ("Juan David", "Valencia", PlayerPosition.Striker, 9),
+                },
             // 15. Jaguares de Córdoba
-            new[] {
-                ("Diego", "Novoa", PlayerPosition.Goalkeeper, 1),
-                ("Geovan", "Montes", PlayerPosition.Defender, 4),
-                ("Larry", "Vásquez", PlayerPosition.Midfielder, 5),
-                ("Pablo", "Bueno", PlayerPosition.Forward, 9),
-            },
+                new[] {
+                    ("Diego", "Novoa", PlayerPosition.Goalkeeper, 1),
+                    ("Geovan", "Montes", PlayerPosition.RightBack, 4),
+                    ("Larry", "Vásquez", PlayerPosition.DefensiveMidfielder, 5),
+                    ("Pablo", "Bueno", PlayerPosition.Striker, 9),
+                },
             // 16. Alianza Valledupar FC
-            new[] {
-                ("Luis", "Delgado", PlayerPosition.Goalkeeper, 1),
-                ("Marvin", "Vallecilla", PlayerPosition.Defender, 3),
-                ("Juan", "Sánchez", PlayerPosition.Midfielder, 8),
-                ("Jeison", "Medina", PlayerPosition.Forward, 9),
-            },
+                new[] {
+                    ("Luis", "Delgado", PlayerPosition.Goalkeeper, 1),
+                    ("Marvin", "Vallecilla", PlayerPosition.CentralDefender, 3),
+                    ("Juan", "Sánchez", PlayerPosition.CentralMidfielder, 8),
+                    ("Jeison", "Medina", PlayerPosition.Striker, 9),
+                },
             // 17. Fortaleza FC
-            new[] {
-                ("Carlos", "Mosquera", PlayerPosition.Goalkeeper, 1),
-                ("Nicolás", "Giraldo", PlayerPosition.Defender, 4),
-                ("Jhonier", "Viveros", PlayerPosition.Midfielder, 10),
-                ("Óscar", "Vanegas", PlayerPosition.Forward, 9),
-            },
+                new[] {
+                    ("Carlos", "Mosquera", PlayerPosition.Goalkeeper, 1),
+                    ("Nicolás", "Giraldo", PlayerPosition.LeftBack, 4),
+                    ("Jhonier", "Viveros", PlayerPosition.AttackingMidfielder, 10),
+                    ("Óscar", "Vanegas", PlayerPosition.Striker, 9),
+                },
             // 18. Llaneros FC
-            new[] {
-                ("José Huber", "Escobar", PlayerPosition.Goalkeeper, 1),
-                ("Cristian", "Arrieta", PlayerPosition.Defender, 3),
-                ("Jhon", "Pajoy", PlayerPosition.Midfielder, 8),
-                ("Brayan", "Gil", PlayerPosition.Forward, 9),
-            },
+                new[] {
+                    ("José Huber", "Escobar", PlayerPosition.Goalkeeper, 1),
+                    ("Cristian", "Arrieta", PlayerPosition.CentralDefender, 3),
+                    ("Jhon", "Pajoy", PlayerPosition.CentralMidfielder, 8),
+                    ("Brayan", "Gil", PlayerPosition.Striker, 9),
+                },
             // 19. Cúcuta Deportivo
-            new[] {
-                ("Norberto", "Araujo", PlayerPosition.Goalkeeper, 1),
-                ("Jefry", "Díaz", PlayerPosition.Defender, 4),
-                ("Juan Camilo", "Portilla", PlayerPosition.Midfielder, 10),
-                ("Edwar", "López", PlayerPosition.Forward, 9),
-            },
-            // 20. Internacional de Bogotá
-            new[] {
-                ("Neto", "Volpi", PlayerPosition.Goalkeeper, 1),
-                ("Nicolás", "Hernández", PlayerPosition.Defender, 3),
-                ("Carlos Darwin", "Quintero", PlayerPosition.Midfielder, 10),
-                ("Facundo", "Boné", PlayerPosition.Forward, 9),
-            },
+                new[] {
+                    ("Norberto", "Araujo", PlayerPosition.Goalkeeper, 1),
+                    ("Jefry", "Díaz", PlayerPosition.RightBack, 4),
+                    ("Juan Camilo", "Portilla", PlayerPosition.AttackingMidfielder, 10),
+                    ("Edwar", "López", PlayerPosition.Striker, 9),
+                },
+                // 20. Internacional de Bogotá
+                new[] {
+                    ("Neto", "Volpi", PlayerPosition.Goalkeeper, 1),
+                    ("Nicolás", "Hernández", PlayerPosition.CentralDefender, 3),
+                    ("Carlos Darwin", "Quintero", PlayerPosition.AttackingMidfielder, 10),
+                    ("Facundo", "Boné", PlayerPosition.Striker, 9),
+                },
             };
-
-
+            // playersData[i] corresponde a teams[i]
             var players = new List<Player>();
             for (int i = 0; i < teams.Count; i++)
             {
@@ -208,18 +221,16 @@ namespace SportsLeague.DataAccess.Seeders
             context.Players.AddRange(players);
             await context.SaveChangesAsync();
 
-
             // ═══ 3. ÁRBITROS ═══
             var referees = new List<Referee>
-        {
-            new() { FirstName="Wilmar", LastName="Roldán", Nationality="Colombia" },
-            new() { FirstName="Andrés", LastName="Rojas", Nationality="Colombia" },
-            new() { FirstName="Carlos", LastName="Betancur", Nationality="Colombia" },
-            new() { FirstName="Jhon", LastName="Hinestroza", Nationality="Colombia" },
-        };
+            {
+                new() { FirstName="Wilmar", LastName="Roldán", Nationality="Colombia" },
+                new() { FirstName="Andrés", LastName="Rojas", Nationality="Colombia" },
+                new() { FirstName="Carlos", LastName="Betancur", Nationality="Colombia" },
+                new() { FirstName="Jhon", LastName="Hinestroza", Nationality="Colombia" },
+            };
             context.Referees.AddRange(referees);
             await context.SaveChangesAsync();
-
 
             // ═══ 4. TORNEO ═══
             var tournament = new Tournament
@@ -233,7 +244,6 @@ namespace SportsLeague.DataAccess.Seeders
             context.Tournaments.Add(tournament);
             await context.SaveChangesAsync();
 
-
             // ═══ 5. INSCRIBIR LOS 20 EQUIPOS ═══
             foreach (var team in teams)
             {
@@ -244,7 +254,122 @@ namespace SportsLeague.DataAccess.Seeders
                 });
             }
             await context.SaveChangesAsync();
+
+            // ═══ 6. PARTIDOS ═══
+            // Partido 1: Nacional vs Medellín — Scheduled (para registrar alineaciones)
+            var match1 = new Match
+            {
+                TournamentId = tournament.Id,
+                HomeTeamId = teams[0].Id,  // Atlético Nacional
+                AwayTeamId = teams[1].Id,  // Independiente Medellín
+                RefereeId = referees[0].Id,
+                MatchDate = new DateTime(2026, 2, 1, 15, 0, 0),
+                Venue = "Atanasio Girardot",
+                Matchday = 1,
+                Status = MatchStatus.Scheduled
+            };
+
+            // Partido 2: América vs Cali — Scheduled (para pruebas adicionales de alineacion)
+            var match2 = new Match
+            {
+                TournamentId = tournament.Id,
+                HomeTeamId = teams[2].Id,  // América de Cali
+                AwayTeamId = teams[3].Id,  // Deportivo Cali
+                RefereeId = referees[1].Id,
+                MatchDate = new DateTime(2026, 2, 1, 17, 0, 0),
+                Venue = "Pascual Guerrero",
+                Matchday = 1,
+                Status = MatchStatus.Scheduled
+            };
+
+            // Partido 3: Junior vs Millonarios — Finished
+            // Sirve para demostrar escenario negativo 6:
+            // no se pueden registrar alineaciones en partidos Finished
+            var match3 = new Match
+            {
+                TournamentId = tournament.Id,
+                HomeTeamId = teams[4].Id,  // Junior FC
+                AwayTeamId = teams[5].Id,  // Millonarios FC
+                RefereeId = referees[2].Id,
+                MatchDate = new DateTime(2026, 1, 20, 15, 0, 0),
+                Venue = "Metropolitano",
+                Matchday = 1,
+                Status = MatchStatus.Finished
+            };
+
+            context.Matches.AddRange(match1, match2, match3);
+            await context.SaveChangesAsync();
+
+            // ═══ 7. RESULTADO DEL PARTIDO FINISHED ═══
+            // Obligatorio porque el partido está Finished
+            context.MatchResults.Add(new MatchResult
+            {
+                MatchId = match3.Id,
+                HomeGoals = 2,
+                AwayGoals = 1,
+                Observations = "Partido de jornada 1"
+            });
+            await context.SaveChangesAsync();
+
+            // ═══ 8. ALINEACIONES DEL PARTIDO 1 (Nacional vs Medellín) ═══
+            // Orden por Player.Id (orden de inserción): Nacional 1–12, Medellín 13–24 en BD vacía
+            // 10 titulares Nacional (Id 1–10); Id 11 y 12 libres para Swagger (11.º → 201, 12.º → 409)
+
+            var nacionalPlayers = players
+                .Where(p => p.TeamId == teams[0].Id)
+                .OrderBy(p => p.Id)
+                .ToList();
+            var medellinPlayers = players
+                .Where(p => p.TeamId == teams[1].Id)
+                .OrderBy(p => p.Id)
+                .ToList();
+
+            var lineups = new List<MatchLineup>();
+
+            for (var i = 0; i < 10; i++)
+            {
+                lineups.Add(new MatchLineup
+                {
+                    MatchId = match1.Id,
+                    PlayerId = nacionalPlayers[i].Id,
+                    IsStarter = true,
+                    Position = nacionalPlayers[i].Position
+                });
+            }
+
+            // nacionalPlayers[10] (Id 11) y [11] (Id 12) sin alinear
+
+            lineups.Add(new MatchLineup
+            {
+                MatchId = match1.Id,
+                PlayerId = medellinPlayers[0].Id,
+                IsStarter = true,
+                Position = medellinPlayers[0].Position
+            });
+            lineups.Add(new MatchLineup
+            {
+                MatchId = match1.Id,
+                PlayerId = medellinPlayers[1].Id,
+                IsStarter = true,
+                Position = medellinPlayers[1].Position
+            });
+            lineups.Add(new MatchLineup
+            {
+                MatchId = match1.Id,
+                PlayerId = medellinPlayers[2].Id,
+                IsStarter = true,
+                Position = medellinPlayers[2].Position
+            });
+            lineups.Add(new MatchLineup
+            {
+                MatchId = match1.Id,
+                PlayerId = medellinPlayers[3].Id,
+                IsStarter = false,
+                Position = medellinPlayers[3].Position
+            });
+
+            context.MatchLineups.AddRange(lineups);
+            await context.SaveChangesAsync();
         }
     }
-
 }
